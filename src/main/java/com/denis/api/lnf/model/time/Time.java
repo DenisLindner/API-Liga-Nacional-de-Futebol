@@ -20,10 +20,14 @@ public class Time {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(nullable = false, unique = true)
     private UUID id;
 
     @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false)
+    private String estadio;
 
     @Column(nullable = false)
     private Divisao divisao;

@@ -20,6 +20,7 @@ public class Atleta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(nullable = false, unique = true)
     private UUID id;
 
     @Column(nullable = false)

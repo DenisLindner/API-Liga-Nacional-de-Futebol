@@ -7,5 +7,5 @@ import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public record AtletaRequestDTO(@NotBlank @Size(min = 3) String nome, @NotNull LocalDate dataInicioContrato, @NotNull LocalDate dataFimContrato, @NotNull UUID idTime, @NotBlank String urlImagem) {
+public record AtletaRequestDTO(@NotBlank @Size(min = 3) String nome, @NotNull LocalDate dataInicioContrato, @NotNull LocalDate dataFimContrato, @NotNull UUID idTime) {
 }

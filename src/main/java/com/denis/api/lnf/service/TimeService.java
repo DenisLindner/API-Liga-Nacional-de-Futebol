@@ -30,6 +30,6 @@ public class TimeService {
     }
 
     public TimeResponseDTO toResponse(Time time){
-        return new TimeResponseDTO(time.getId(), time.getNome(), time.getDivisao(), time.getDataFundacao(), time.getUrlLogo());
+        return new TimeResponseDTO(time.getId(), time.getNome(), time.getEstadio(), time.getDivisao(), time.getDataFundacao());
     }
 }

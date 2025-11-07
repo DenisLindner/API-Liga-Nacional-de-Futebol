@@ -7,5 +7,5 @@ import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
-public record TimeRequestDTO(@NotBlank @Size(min = 3) String nome, @NotBlank String estadio, @NotNull LocalDate dataFundacao, @NotNull Divisao divisao, @NotBlank String urlLogo) {
+public record TimeRequestDTO(@NotBlank @Size(min = 3) String nome, @NotBlank String estadio, @NotNull LocalDate dataFundacao, @NotNull Divisao divisao) {
 }

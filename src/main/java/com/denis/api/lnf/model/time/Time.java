@@ -30,18 +30,15 @@ public class Time {
     private String estadio;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Divisao divisao;
 
     @Column(nullable = false)
     private LocalDate dataFundacao;
 
-    @Column(nullable = false)
-    private String urlLogo;
-
     public Time(TimeRequestDTO data){
         this.nome = data.nome();
         this.divisao = data.divisao();
         this.dataFundacao = data.dataFundacao();
-        this.urlLogo = data.urlLogo();
     }
 }

@@ -32,9 +32,6 @@ public class Atleta {
     @Column(nullable = false)
     private LocalDate dataFimContrato;
 
-    @Column(nullable = false)
-    private String urlImagem;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idTime", nullable = false)
     private Time time;
@@ -43,7 +40,6 @@ public class Atleta {
         this.nome = data.nome();
         this.dataInicioContrato = data.dataInicioContrato();
         this.dataFimContrato = data.dataFimContrato();
-        this.urlImagem = data.urlImagem();
         this.time = time;
     }
 }

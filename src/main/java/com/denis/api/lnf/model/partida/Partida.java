@@ -23,9 +23,14 @@ public class Partida {
     @Column(nullable = false, unique = true)
     private UUID id;
 
+    @Column(nullable = false)
     private LocalDateTime dataHorario;
+
+    @Column(nullable = false)
     private String estadio;
-    private Boolean concluido = false;
+
+    @Column(nullable = false)
+    private Boolean concluido;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idMandante", nullable = false)
@@ -35,5 +40,11 @@ public class Partida {
     @JoinColumn(name = "idVisitante", nullable = false)
     private Time timeVisitante;
 
-
+    public Partida(LocalDateTime dataHorario, String estadio, Time timeMandante, Time timeVisitante) {
+        this.dataHorario = dataHorario;
+        this.estadio = estadio;
+        this.concluido = false;
+        this.timeMandante = timeMandante;
+        this.timeVisitante = timeVisitante;
+    }
 }

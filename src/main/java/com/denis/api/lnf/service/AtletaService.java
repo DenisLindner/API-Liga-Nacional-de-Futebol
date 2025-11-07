@@ -24,6 +24,6 @@ public class AtletaService {
     }
 
     public AtletaResponseDTO toResponse(Atleta atleta) {
-        return new AtletaResponseDTO(atleta.getId(), atleta.getNome(), atleta.getTime(), atleta.getDataInicioContrato(), atleta.getDataFimContrato(), atleta.getUrlImagem());
+        return new AtletaResponseDTO(atleta.getId(), atleta.getNome(), atleta.getTime(), atleta.getDataInicioContrato(), atleta.getDataFimContrato());
     }
 }

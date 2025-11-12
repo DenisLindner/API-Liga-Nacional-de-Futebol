@@ -1,6 +1,7 @@
 package com.denis.api.lnf.service;
 
 import com.denis.api.lnf.exception.TimeNaoExisteException;
+import com.denis.api.lnf.model.enums.Divisao;
 import com.denis.api.lnf.model.time.Time;
 import com.denis.api.lnf.model.time.TimeRequestDTO;
 import com.denis.api.lnf.model.time.TimeResponseDTO;
@@ -8,6 +9,7 @@ import com.denis.api.lnf.repository.TimeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -23,6 +25,14 @@ public class TimeService {
 
     public Time buscarTimeCadastroAtleta(UUID id){
         return timeRepository.findById(id).orElseThrow(() -> new TimeNaoExisteException(id));
+    }
+
+    public int buscarQuantidadeTimesDivisao(Divisao divisao){
+        return timeRepository.countByDivisao(divisao);
+    }
+
+    public List<Time> buscarTimesDivisao(Divisao divisao){
+        return timeRepository.getAllByDivisao(divisao);
     }
 
     public boolean timeExiste(UUID id){

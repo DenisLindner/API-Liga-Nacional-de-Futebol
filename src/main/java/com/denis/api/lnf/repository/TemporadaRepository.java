@@ -9,4 +9,6 @@ import java.util.UUID;
 @Repository
 public interface TemporadaRepository extends JpaRepository<Temporada, UUID> {
     boolean existsByConcluido(boolean concluido);
+
+    Temporada getDistinctById(UUID id);
 }

@@ -1,5 +1,6 @@
 package com.denis.api.lnf.model.partida;
 
+import com.denis.api.lnf.model.temporada.Temporada;
 import com.denis.api.lnf.model.time.Time;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -32,6 +33,9 @@ public class Partida {
     @Column(nullable = false)
     private Boolean concluido;
 
+    @Column(nullable = false)
+    private int rodada;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idMandante", nullable = false)
     private Time timeMandante;
@@ -40,11 +44,17 @@ public class Partida {
     @JoinColumn(name = "idVisitante", nullable = false)
     private Time timeVisitante;
 
-    public Partida(LocalDateTime dataHorario, String estadio, Time timeMandante, Time timeVisitante) {
-        this.dataHorario = dataHorario;
-        this.estadio = estadio;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idTemporada", nullable = false)
+    private Temporada temporada;
+
+    public Partida(PartidaRequestDTO data) {
+        this.dataHorario = data.dataHorario();
+        this.estadio = data.estadio();
         this.concluido = false;
-        this.timeMandante = timeMandante;
-        this.timeVisitante = timeVisitante;
+        this.rodada = data.rodada();
+        this.timeMandante = data.timeMandante();
+        this.timeVisitante = data.timeVisitante();
+        this.temporada = data.temporada();
     }
 }

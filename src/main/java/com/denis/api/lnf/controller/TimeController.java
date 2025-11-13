@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/time")
 @AllArgsConstructor
@@ -19,8 +21,13 @@ public class TimeController {
 
     public TimeService timeService;
 
-    @PostMapping
+    @PostMapping("/cadastro-time")
     public ResponseEntity<TimeResponseDTO> cadastroTime(@RequestBody @Valid TimeRequestDTO data){
         return ResponseEntity.status(HttpStatus.CREATED).body(timeService.cadastroTime(data));
+    }
+
+    @PostMapping("/cadastro-times")
+    public ResponseEntity<List<TimeResponseDTO>> cadastroTimes(@RequestBody @Valid List<TimeRequestDTO> data){
+        return ResponseEntity.status(HttpStatus.CREATED).body(timeService.cadastroTimes(data));
     }
 }

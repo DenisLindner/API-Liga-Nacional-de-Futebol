@@ -38,6 +38,7 @@ public class Time {
 
     public Time(TimeRequestDTO data){
         this.nome = data.nome();
+        this.estadio = data.estadio();
         this.divisao = data.divisao();
         this.dataFundacao = data.dataFundacao();
     }

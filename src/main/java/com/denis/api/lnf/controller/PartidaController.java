@@ -1,6 +1,7 @@
 package com.denis.api.lnf.controller;
 
 import com.denis.api.lnf.model.partida.PartidaResponseDTO;
+import com.denis.api.lnf.model.temporada.Temporada;
 import com.denis.api.lnf.service.PartidaService;
 import com.denis.api.lnf.service.TemporadaService;
 import jakarta.validation.Valid;
@@ -22,6 +23,13 @@ public class PartidaController {
 
     @GetMapping("/partidas-temporada/{idTemporada}")
     public ResponseEntity<List<PartidaResponseDTO>> getAllPartidasByTemporada(@PathVariable @Valid String idTemporada){
-        return ResponseEntity.status(HttpStatus.OK).body(partidaService.getAllPartidasTemporada(temporadaService.getTemporadaById(UUID.fromString(idTemporada))));
+        Temporada temporada = temporadaService.getTemporadaById(UUID.fromString(idTemporada));
+        return ResponseEntity.status(HttpStatus.OK).body(partidaService.getAllPartidasTemporada(temporada));
+    }
+
+    @GetMapping("/partidas-temporada-rodada/{idTemporada}{rodada}")
+    public ResponseEntity<List<PartidaResponseDTO>> getAllPartidasByTemporada(@PathVariable @Valid String idTemporada, @PathVariable @Valid int rodada){
+        Temporada temporada = temporadaService.getTemporadaById(UUID.fromString(idTemporada));
+        return ResponseEntity.status(HttpStatus.OK).body(partidaService.getAllPartidasTemporadaAndRodada(temporada,rodada));
     }
 }

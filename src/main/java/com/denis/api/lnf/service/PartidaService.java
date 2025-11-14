@@ -69,24 +69,28 @@ public class PartidaService {
     }
 
     public PartidaResponseDTO toResponse(Partida partida){
-        return new PartidaResponseDTO(partida.getId(), partida.getDataHorario(), partida.getEstadio(), partida.getRodada(), partida.getTimeMandante(), partida.getTimeVisitante(), String.valueOf(getQuantidadeGolsTimeMandante(partida)), String.valueOf(getQuantidadeGolsTimeVisitane(partida)), partida.getTemporada().getNome());
+        return new PartidaResponseDTO(partida.getId(), partida.getDataHorario(), partida.getEstadio(), partida.getRodada(), partida.getTimeMandante().getNome(), partida.getTimeVisitante().getNome(), String.valueOf(getQuantidadeGolsTimeMandante(partida)), String.valueOf(getQuantidadeGolsTimeVisitane(partida)), partida.getTemporada().getNome());
     }
 
     public PartidaDetalhadaResponseDTO toDetalhada(Partida partida){
-        return new PartidaDetalhadaResponseDTO(partida.getId(), partida.getDataHorario(), partida.getEstadio(), partida.getRodada(), partida.getTimeMandante(), partida.getTimeVisitante(), String.valueOf(getQuantidadeGolsTimeMandante(partida)), String.valueOf(getQuantidadeGolsTimeVisitane(partida)), partida.getTemporada().getNome(), getGolsListaResponse(partida), getCartaoListaResponse(partida));
+        return new PartidaDetalhadaResponseDTO(partida.getId(), partida.getDataHorario(), partida.getEstadio(), partida.getRodada(), partida.getTimeMandante().getNome(), partida.getTimeVisitante().getNome(), String.valueOf(getQuantidadeGolsTimeMandante(partida)), String.valueOf(getQuantidadeGolsTimeVisitane(partida)), partida.getTemporada().getNome(), getGolsListaResponse(partida), getCartaoListaResponse(partida));
     }
 
     public GolListaResponseDTO toGolsListaResponse(Gol gol){
-        return new GolListaResponseDTO(gol.getId(), gol.getMinuto(), gol.getAtleta());
+        return new GolListaResponseDTO(gol.getId(), gol.getMinuto(), gol.getAtleta().getNome(), gol.getAtleta().getTime().getNome());
     }
 
     public CartaoListaResponseDTO toCartaoListaResponse(Cartao cartao){
-        return new CartaoListaResponseDTO(cartao.getId(), cartao.getMinuto(), cartao.getTipoCartao(), cartao.getAtleta());
+        return new CartaoListaResponseDTO(cartao.getId(), cartao.getMinuto(), cartao.getTipoCartao(), cartao.getAtleta().getNome(), cartao.getAtleta().getTime().getNome());
     }
 
 
     public List<PartidaResponseDTO> getAllPartidasTemporada(Temporada temporada){
         return partidaRepository.getAllByTemporada(temporada).stream().map(this::toResponse).toList();
+    }
+
+    public List<PartidaResponseDTO> getAllPartidasTemporadaAndRodada(Temporada temporada, int rodada){
+        return partidaRepository.getAllByTemporadaAndRodada(temporada, rodada).stream().map(this::toResponse).toList();
     }
 
 

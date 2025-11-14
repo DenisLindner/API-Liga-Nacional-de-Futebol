@@ -13,4 +13,6 @@ public interface PartidaRepository extends JpaRepository<Partida, UUID> {
     Partida getDistinctById(UUID id);
 
     List<Partida> getAllByTemporada(Temporada temporada);
+
+    List<Partida> getAllByTemporadaAndRodada(Temporada temporada, int rodada);
 }
